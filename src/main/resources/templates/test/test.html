@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>列表</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="../../static/css/weui.css"/>
+  <link rel="stylesheet" href="../../static/css/weui2.css"/>
+  <script src="zepto.min.js"></script>
+
+  <script type="text/javascript">
+
+//    var ary = ["111","22","33","111"];
+
+
+    var dbUser = 'dbhelper;uaccsvr;uautousr;ubakdb;ubmcmon;ubusifrn;ubusisvr;ubusiyhk;ucallfrn;ucardusr;ucbusr;ucmpplog;ucmppsta;ucrmusr;ucustfrn;ucustmng;uechanel;uepsfrna;uepssvra;uexport;ufinusr;uflatusr;ugdplata;ugfusr;uhfbusia;ukfczfrn;umallfrn;umblbank;umblusr;umerusr;umssfrn;upayusr;uplatmng;uposusr;uregsvr;urmiuser;urpusr;uselect;uselfsv;uservfrn;usetfrn;usetmng;usetusr;ushkffrn;ushopfrn;usmsusr;usporder;ustatusr;uuionpay;uwebmng;uwebsvr;uwwwusr;uwywg;dbhelper';
+    dbUser = dbUser.split(";")
+
+    $(function () {
+      $("#btn1").click(function () {
+        var nary=dbUser.sort();
+        for(var i=0;i<dbUser.length;i++){
+          if (nary[i]==nary[i+1]){
+            console.info(nary[i]);
+            return;
+          }
+        }
+        console.info("没有重复数据！");
+      });
+    });
+
+$.validator.addMethod("isRepetition", function(value) {
+  value = value.split(";")
+  var nary=value.sort();
+  for(var i=0;i<value.length;i++){
+    if (nary[i]==nary[i+1]){
+      return false;
+    }
+  }
+  return true;
+}, '数据有重复');
+
+$.validator.addMethod("isSemicolon", function(value) {
+  return validataSemicolon(value);
+}, '必须是半角;(分号)');
+
+$.validator.addMethod("isRepetition", function(value) {
+  return validataRepetition(value);
+}, '数据有重复');
+
+  </script>
+</head>
+
+<body>
+<div class="main">
+  <div id="btn1">btn1</div>
+  <br/>
+  <div id="btn2">btn2</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+server:
+    port: 8080
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/smallschool?characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+    jpa:
+        generate-ddl: false
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+    thymeleaf:
+        prefix: classpath:/templates/
+        suffix: .html
+        mode: HTML5
+        servlet:
+            content-type: text/html
+        cache: false
+        encoding: UTF-8
+    resources:
+        static-locations: classpath:/static/

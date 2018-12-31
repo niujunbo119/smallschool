@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>服务详情</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<!--
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+  <link rel="stylesheet" th:href="@{/style/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/mall.css}"/>
+  <link rel="stylesheet" th:href="@{/css/load.css}"/>
+
+
+</head>
+<body>
+<header class="header">
+  <div class="weui-header ">
+    <div class="weui-header-left">
+      <a th:href="@{/service/service}">◄</a>
+    </div>
+    <h1 class="weui-header-title f-orange">服务详情</h1>
+    <div class="weui-header-right">
+      <a href="#" class="edit f-orange"></a>
+    </div>
+  </div>
+</header>
+<form th:action="@{#}" th:align="center" >
+  <table border="0"  style="font-size: large;font-weight: bold;color: black;text-align: left">
+    <!--<tr style="font-weight: bold;color: black">-->
+      <!--<td th:width="90px" th:height="30px">服务类型</td>-->
+    <!--</tr>-->
+    <tr th:each="service:${service_detail}" >
+      <td th:text="'--  服务名称： '+${service.serviceName}" th:width="300px" th:height="60px"></td>
+    </tr>
+    <tr th:each="service:${service_detail}" >
+      <td th:text="'--  服务内容： '+${service.serviceContent}" th:width="600px" th:height="60px"></td>
+    </tr>
+    <tr th:each="service:${service_detail}" >
+      <td th:text="'--  服务小费： '+${service.serviceFee}" th:width="300px" th:height="60px"></td>
+    </tr>
+    <tr th:each="service:${service_detail}" >
+      <td th:text="'--  服务开始时间： '+${service.serviceStime}" th:width="600px" th:height="60px"></td>
+    </tr>
+    <tr th:each="service:${service_detail}" >
+      <td th:text="'--  服务结束时间： '+${service.serviceEtime}" th:width="300px" th:height="60px"></td>
+    </tr>
+    <tr th:each="service:${service_detail}" >
+      <td th:if="${service.serviceStatus} eq 1" th:text="'--  服务状态：已完成 '" th:width="300px" th:height="60px"></td>
+      <td th:if="${service.serviceStatus} eq 2" th:text="'--  服务状态：正在进行 '" th:width="300px" th:height="60px"></td>
+      <td th:if="${service.serviceStatus} eq 3" th:text="'--  服务状态：未完成 '" th:width="300px" th:height="60px"></td>
+    </tr>
+
+  </table>
+
+  <button type="submit" style="width: 150px;height: 60px">接受任务 换成图片</button>
+</form>
+
+
+<footer class="footer weui_tab tab-bottom" style="height:55px;">
+  <nav class="weui_tabbar">
+    <a th:href="@{/snack/index}" class="weui_tabbar_item weui_bar_item_on">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-29"></i>
+      </div>
+      <p class="weui_tabbar_label">首页</p>
+    </a>
+    <a th:href="@{/snack/toService/}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-62"></i>
+      </div>
+      <p class="weui_tabbar_label">服务</p>
+    </a>
+    <a href="javascript:" class="weui_tabbar_item"></a>
+    <a th:href="@{/service/toOrder}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-81"></i>
+      </div>
+      <p class="weui_tabbar_label">订单</p>
+    </a>
+    <a th:href="@{/user/info}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-85"></i>
+      </div>
+      <p class="weui_tabbar_label">我的</p>
+    </a>
+  </nav>
+</footer>
+
+<div class="shop-cart">
+  <a id="cart" href="shopcart.html" class="cart">
+    <div class="c-icon">
+      <i class="icon icon-24"></i>
+    </div>
+    <!--<p class="c-txt">购物车</p>-->
+  </a>
+</div>
+<span class="total-price">总价：￥<strong>0</strong></span>
+
+
+</body>
+<script src="/js/lib/zepto.min.js"></script>
+<script src="/js/lib/swipe.js"></script>
+<script src="/js/lib/parabola.js"></script>
+<script src="/js/lib/serverUrl.js"></script>
+
+<script src="/index.js"></script>
+<script src="/js/example.js"></script>
+<script src="js/lib/zepto.min.js"></script>
+<script src="js/example.js"></script>
+</html>

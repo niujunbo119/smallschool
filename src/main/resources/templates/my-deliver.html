@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>送货地址</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" th:href="@{/css/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/mall.css}"/>
+  <link rel="stylesheet" th:href="@{/css/my-deliver.css}">
+</head>
+<body ontouchstart>
+<header class="header">
+  地址管理：
+</header>
+
+<article class="main" >
+  <section id="home-delivery" class="home-delivery ">
+    <ul class="address-list" >
+      <li class="item" th:each="user:${user_list}">
+        <span class="activate"></span>
+        <div class="a-main">
+          <a href="javascript:;">
+            <div class="a-left">
+              <div class="a-top">
+                <span class="name" th:text="${user.getName()}"></span>
+                <span class="sex" th:text="'&nbsp('+${user.gender}+')'"></span>
+                <span class="phone" th:text="${user.getPhone()}"></span>
+              </div>
+              <div class="bottom">
+                <span class="tag">地址①：</span>
+                <span class="addr" th:text="${user.getLocation()}">三元桥</span>
+              </div>
+              <div class="bottom" th:if="${ not #strings.isEmpty(user.getLocation2())}">
+                <span class="tag">地址②：</span>
+                <span class="addr" th:text="${user.getLocation2()}">三元桥</span>
+              </div>
+              <div class="bottom" th:if="${ not #strings.isEmpty(user.getLocation3())}">
+                <span class="tag">地址③：</span>
+                <span class="addr" th:text="${user.getLocation3()}">三元桥</span>
+              </div>
+            </div>
+          </a>
+          <div class="a-right">
+            <i class="icon icon-116"></i>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+</article>
+<div class="bd spacing">
+  <a href="javascript:;" class="txt">新建收货地址</a>
+</div>
+<footer class="footer weui_tab tab-bottom" style="height:55px;">
+  <nav class="weui_tabbar">
+    <a th:href="@{/snack/index}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-27"></i>
+      </div>
+      <p class="weui_tabbar_label">首页</p>
+    </a>
+    <a th:href="@{/service/service/}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-62"></i>
+      </div>
+      <p class="weui_tabbar_label">服务</p>
+    </a>
+    <a href="javascript:;" class="weui_tabbar_item"></a>
+    <a th:href="@{/service/toOrder}" class="weui_tabbar_item">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-81"></i>
+      </div>
+      <p class="weui_tabbar_label">订单</p>
+    </a>
+    <a th:href="@{/user/info}" class="weui_tabbar_item weui_bar_item_on">
+      <div class="weui_tabbar_icon">
+        <i class="icon icon-84"></i>
+      </div>
+      <p class="weui_tabbar_label">我的</p>
+    </a>
+  </nav>
+</footer>
+<div class="shop-cart">
+  <a id="cart" href="shopcart.html" class="cart">
+    <div class="c-icon">
+      <i class="icon icon-24"></i>
+    </div>
+    <!--<p class="c-txt">购物车</p>-->
+  </a>
+</div>
+</body>
+<script th:src="@{/js/lib/zepto.min.js}"></script>
+<script th:src="@{/js/my-deliver.js}"></script>
+<script th:src="@{/js/example.js}"></script>
+</html>

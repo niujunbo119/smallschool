@@ -1,0 +1,59 @@
+.net-loading {
+  height: 85px;
+  width: 75px;
+  border-radius: 4px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -42px;
+  margin-left: -37px;
+  background: #3F3F3F;
+  display: none;
+}
+.net-loading .loading-icon {
+  height: 40px;
+  width: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  background: url('../icon/net-loading.gif') no-repeat top center;
+  background-size: contain;
+}
+.net-loading .txt {
+  height: 20px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px;
+  color: #ffffff;
+  margin-top: 10px;
+  display: block;
+}
+
+.buy-loading {
+  height: 42px;
+  width: 42px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -21px;
+  margin-left: -21px;
+  background: url('../icon/buy-loading.gif') no-repeat top center;
+  background-size: contain;
+  display: none;
+}
+
+/* 错误提示框 */
+.err-hints {
+  font-family: '黑体', '微软雅黑';
+  padding: 1px 4px;
+  font-size: 16px;
+  color: #6E5336;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  background: #FFEBBB;
+  border: solid 1px #BEA383;
+  position:fixed;
+  margin:0 auto;
+  bottom:150px;
+  left:40%;
+  display: none;
+}

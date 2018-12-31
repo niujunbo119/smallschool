@@ -1,0 +1,41 @@
+body {
+  font-size: 12px;
+  color: #969696;
+  font-family: Helvetica,Droidsansfallback;
+  position:relative;
+  background: #F0EFF5;
+}
+ul, li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcaption {
+  margin: 0;
+  padding: 0;
+}
+.weui_icon_success:before {
+  font-size: 78px;
+  color: #FF6303;
+}
+.weui_msg .weui_msg_title {
+  margin-bottom: 16px;
+  font-size: 28px;
+  color: #D54C25;
+  text-indent: 15px;
+  /*text-align: center;*/
+}
+.weui_msg .weui_text_area .weui_msg_desc {
+  /*text-indent: -15px;*/
+  font-size: 18px;
+}
+.weui_msg .weui_text_area .order {
+  margin-bottom: 18px;
+}
+/*.weui_msg .weui_text_area .delivery {*/
+  /*font-size: 16px;*/
+/*}*/
+/*.weui_msg .weui_text_area .hint {*/
+  /*font-size: 16px;*/
+/*}*/
