@@ -82,20 +82,20 @@ public class SnackEntity {
         this.snackBalance = snackBalance;
     }
 
-    public String getPicString() {
-        return picString;
-    }
-
-    public void setPicString(String picString) {
-        this.picString = picString;
-    }
-
     public byte[] getSnackPic() {
         return snackPic;
     }
 
     public void setSnackPic(byte[] snackPic) {
         this.snackPic = snackPic;
+    }
+
+    public String getPicString() {
+        return picString;
+    }
+
+    public void setPicString(String picString) {
+        this.picString = picString;
     }
 
     @Override

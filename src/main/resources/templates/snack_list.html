@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="UTF-8">
-		<title>牛奶</title>
+		<title>snack</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<link rel="stylesheet" href="css/weui.css" />
-		<link rel="stylesheet" href="css/weui2.css" />
-		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" th:href="@{/css/weui.css}" />
+		<link rel="stylesheet" th:href="@{/css/weui2.css}" />
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link rel="stylesheet" th:href="@{/css/index.css}">
+		<script th:src="@{/js/jquery.min.js}"></script>
 	</head>
 
 	<body ontouchstart>
@@ -21,16 +22,18 @@
 			<h1>商品列表</h1>
 			<div class="bd">
 				<div class="row">
-					<div class="col-33">
+					<div class="col-33" th:each="snack:${snack_list}">
 						<figure class="item">
-							<a class="pic" href="detail.html"><img src="images/tls.jpg" width="70" height="95"></a>
+							<a class="pic" th:href="@{/snack/snackDetail/}+${snack.getSnackId()}">
+								<!--<img th:src="'data:image/jpeg;base64,'+${candy.bz}" th:id="${candy.getSnackId()}+'zp'" width="70" height="95" /></a>-->
+								<img th:src="${snack.getPicString()}"/></a>
 							<figcaption>
-								<strong class="title">特仑苏</strong>
-								<em class="desc">6元/盒</em>
+								<strong class="title" th:text="${snack.getSnackName()}">名称</strong>
+								<em class="desc" th:utext="'原价：<s>'+${snack.getSnackPrice()}*2.0+'</s>'">原价格</em>
 								<div class="info">
 									<span class="price">
-                  ￥<strong>6.0</strong>
-                </span>
+                 				 ￥<strong th:text="${snack.getSnackPrice()}">折扣价</strong>
+               						</span>
 									<div class="buy">
 										<span class="sub icon icon-122"></span>
 										<span class="count">0</span>
@@ -41,7 +44,7 @@
 							</figcaption>
 						</figure>
 					</div>
-					<div class="col-33">
+					<!--<div class="col-33">
 						<figure class="item">
 							<a class="pic" href="detail.html"><img src="images/yl.jpg" width="70" height="95"></a>
 							<figcaption>
@@ -140,31 +143,32 @@
 								<div class="tag">推荐</div>
 							</figcaption>
 						</figure>
-					</div>
+					</div>-->
 				</div>
+			</div>
 		</article>
 		<footer class="footer weui_tab tab-bottom" style="height:55px;">
 			<nav class="weui_tabbar">
-				<a href="index.html" class="weui_tabbar_item weui_bar_item_on">
+				<a th:href="@{/snack/index}" class="weui_tabbar_item weui_bar_item_on">
 					<div class="weui_tabbar_icon">
 						<i class="icon icon-29"></i>
 					</div>
 					<p class="weui_tabbar_label">首页</p>
 				</a>
-				<a href="mall.html" class="weui_tabbar_item">
+				<a th:href="@{/snack/toService/}" class="weui_tabbar_item">
 					<div class="weui_tabbar_icon">
 						<i class="icon icon-62"></i>
 					</div>
 					<p class="weui_tabbar_label">服务</p>
 				</a>
-				<a href="javascript:;" class="weui_tabbar_item"></a>
-				<a href="service_order.html" class="weui_tabbar_item">
+				<a href="javascript:" class="weui_tabbar_item"></a>
+				<a th:href="@{/service/toOrder}" class="weui_tabbar_item">
 					<div class="weui_tabbar_icon">
 						<i class="icon icon-81"></i>
 					</div>
 					<p class="weui_tabbar_label">订单</p>
 				</a>
-				<a href="myinfo.html" class="weui_tabbar_item">
+				<a th:href="@{/user/info}" class="weui_tabbar_item">
 					<div class="weui_tabbar_icon">
 						<i class="icon icon-85"></i>
 					</div>
@@ -174,7 +178,7 @@
 		</footer>
 
 		<div class="shop-cart">
-			<a id="cart" href="shopcart.html" class="cart">
+			<a id="cart" th:href="@{/snack/shopcart}" class="cart">
 				<div class="c-icon">
 					<i class="icon icon-24"></i>
 				</div>
@@ -197,13 +201,146 @@
 		<div id="error" class="err-hints">错误信息</div>
 
 	</body>
-	<script src="js/lib/zepto.min.js"></script>
-	<script src="js/lib/swipe.js"></script>
-	<script src="js/lib/parabola.js"></script>
-	<script src="js/lib/serverUrl.js"></script>
+	<script th:src="@{/js/lib/zepto.min.js}"></script>
+	<script th:src="@{/js/lib/swipe.js}"></script>
+	<script th:src="@{/js/lib/parabola.js}"></script>
+	<script th:src="@{/js/lib/serverUrl.js}"></script>
 
-	<script src="js/index.js"></script>
-	<script src="js/example.js"></script>
-	</body>
+	<script th:src="@{index.js}"></script>
+	<script th:src="@{/js/example.js}"></script>
+	<!--<script>
+        function zp(obj){
+            var xh = $(obj).attr("name");
+
+            $.ajax({
+                url:"/snack/candyImg",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "snackId":snackId
+                },
+                success: function (datas) {
+                    var element = document.getElementById(xh+"zp");
+                    element.src=datas.zp;
+
+
+                }
+
+            })
+
+        }
+	</script>-->
+	<script>
+		$(function () {
+            var $totalPrice = $(".total-price").children("strong").text();
+            if($totalPrice!="" && $totalPrice!="0") {
+                $(".total-price").show();
+            }else {
+                $(".total-price").hide();
+            }
+
+            // 购买
+            $(".add").click(function (event) {
+                event.preventDefault();
+                var $add = $(this);
+
+                addCount($add);
+
+                if($(".total-price").hide()) {
+                    $(".total-price").show();
+                    addPrice($add);
+                }else {
+                    addPrice($add);
+                }
+
+                var imgSrc = $add.parents(".item").children('.pic').children('img').attr('src');
+                var imgObj = $('<img src="' + imgSrc + '">').appendTo("body").css({
+                    "width": "30px",
+                    "height": "30px",
+                    "border-radius": "50px",
+                    "position": "absolute",
+                    "top": toInteger($add.offset().top) + toInteger($add.css("width"))/2-15,
+                    "left": toInteger($add.offset().left)+ toInteger($add.css("height"))/2-15,
+                });
+                var bool = new Parabola({
+                    el: imgObj,
+                    callback: function () {
+
+                    },
+                    stepCallback: function (x, y) {
+                    }
+                });
+                // 设置配置参数
+                bool.setOptions({
+                    targetEl: $("#cart"),
+                    curvature: 0.01,
+                    duration: 600
+                });
+                // 开始运动
+                bool.start();
+            });
+            // 减少操作
+            $(".sub").click(function () {
+                var $sub = $(this);
+                subCount($sub);
+                subPrice($sub);
+            });
+        })
+
+        // 添加数量
+        function addCount(obj) {
+            obj.siblings('.sub').show();
+            obj.prev('.count').show();
+            var count = parseInt(obj.prev().text());
+            count += 1;
+            obj.prev().text(count);
+            obj.parent().siblings(".price").css({
+                "font-size":"14px",
+                "color":"white",
+                "position":"absolute",
+                "bottom":"82px",
+                "left":"0",
+                "border-radius":"6px",
+                "background":"#EF4F4F"
+            }).children('strong').css("font-size","14px");
+        }
+        // 减少数量
+        function subCount(obj) {
+            var count = parseInt(obj.next().text());
+            count -= 1;
+            if(count == 0) {
+                obj.hide();
+                obj.siblings('.count').hide();
+                obj.parent().siblings(".price").removeAttr('style').children('strong').removeAttr('style');
+            }
+            obj.next().text(count);
+        }
+
+        // 添加金额
+        function addPrice(obj) {
+            var price = parseFloat(obj.parent().siblings(".price").children("strong").text());
+            var totalPrice = parseFloat($(".total-price").children("strong").text());
+            totalPrice += price;
+            $(".total-price").children("strong").text(totalPrice.toFixed(1));
+        }
+        // 减少金额
+        function subPrice(obj) {
+            var price = parseFloat(obj.parent().siblings(".price").children("strong").text());
+            var totalPrice = parseFloat($(".total-price").children("strong").text());
+            totalPrice -= price;
+            if (totalPrice == 0) {
+                $(".total-price").hide();
+            }
+            $(".total-price").children("strong").text(totalPrice.toFixed(1));
+        }
+
+
+        // 转换成Int类型
+        function toInteger(text){
+            text = parseInt(text);
+            return isFinite(text) ? text : 0;
+        }
+	</script>
+
 
 </html>

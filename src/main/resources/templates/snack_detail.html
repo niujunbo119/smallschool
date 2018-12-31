@@ -15,7 +15,7 @@
 </head>
 <body ontouchstart th:each="snack:${snack_details}">
   <header class="header">
-    <a class="back" th:href="@{/snack/index}"></a>
+    <a class="back" th:href="@{/snack/snackList/}+${snack.getSnackCategory()}"></a>
     <div class="slide" id="slideshow">
         <!--<img th:src="${snack.getPicString()}" alt="">-->
       <img th:src="${snack.getPicString()}" alt="">
@@ -102,7 +102,7 @@
           <span class="icon icon-49"></span>
           <span class="c-txt">收藏</span>
         </div>
-        <div class="add"><a href="shopcart.html">加入购物车</a></div>
+        <div class="add"><a th:href="@{/snack/shopcart}">购物车</a></div>
       </div>
     </div>
   </footer>

@@ -1,6 +1,7 @@
 package com.smallschool.controller;
 
 import com.smallschool.entity.SnackEntity;
+import com.smallschool.entity.UserEntity;
 import com.smallschool.service.SnackOrderRepository;
 import com.smallschool.service.SnackRepository;
 import com.smallschool.service.UserRepository;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class SnackController {
             snack.setPicString(pic);
         }
         map.put("snack_list",snack_list);
-        return "tg";
+        return "snack_list";
     }
 
     @RequestMapping("/snackDetail/{snackId}")
@@ -91,4 +92,17 @@ public class SnackController {
         return "snack_detail";
     }
 
+
+    /**
+     * @param map
+     * @return 跳转进入购物车
+     */
+    @RequestMapping("/shopcart")
+    public String shopCart(Map map){
+
+        List <UserEntity> user_list = userRepository.findAll();
+        map.put("user_list",user_list);
+
+        return "shopcart";
+    }
 }

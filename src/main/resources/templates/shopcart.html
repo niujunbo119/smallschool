@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="css/weui.css"/>
-  <link rel="stylesheet" href="css/weui2.css"/>
-  <link rel="stylesheet" href="css/shopcart.css">
+  <link rel="stylesheet" th:href="@{/css/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/shopcart.css}">
 </head>
 <body ontouchstart>
 
@@ -44,7 +44,7 @@
     <!--<span><span class="date">06月15日</span>配送</span>-->
   </div>
   <div class="list">
-    <div class="weui_cells weui_cells_checkbox">
+    <div class="weui_cells weui_cells_checkbox" >
       <label class="weui_cell weui_check_label" for="s11">
         <div class="weui_cell_hd">
           <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked>
@@ -199,6 +199,6 @@
   </div>
 </footer>
 </body>
-<script src="js/lib/zepto.min.js"></script>
-<script src="js/shopcart.js"></script>
+<script th:src="@{/js/lib/zepto.min.js}"></script>
+<script th:src="@{/js/shopcart.js}"></script>
 </html>
