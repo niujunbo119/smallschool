@@ -35,9 +35,9 @@
                  				 ￥<strong th:text="${snack.getSnackPrice()}">折扣价</strong>
                						</span>
 									<div class="buy">
-										<span class="sub icon icon-122"></span>
+										<span class="sub icon icon-122" th:name="${snack.getSnackId()}"></span>
 										<span class="count">0</span>
-										<span class="add icon icon-36"></span>
+										<span class="add icon icon-36" th:name="${snack.getSnackId()}"></span>
 									</div>
 								</div>
 								<div class="tag">推荐</div>
@@ -178,7 +178,7 @@
 		</footer>
 
 		<div class="shop-cart">
-			<a id="cart" th:href="@{/snack/shopcart}" class="cart">
+			<a id="cart" th:href="@{/snackOrder/toShopCart}" class="cart">
 				<div class="c-icon">
 					<i class="icon icon-24"></i>
 				</div>
@@ -206,31 +206,43 @@
 	<script th:src="@{/js/lib/parabola.js}"></script>
 	<script th:src="@{/js/lib/serverUrl.js}"></script>
 
-	<script th:src="@{index.js}"></script>
+	<script th:src="@{/index.js}"></script>
 	<script th:src="@{/js/example.js}"></script>
-	<!--<script>
-        function zp(obj){
-            var xh = $(obj).attr("name");
-
+	<script th:inline="javascript">
+        function addcart(obj){
+            var snackId = $(obj).attr("name");
+			console.log(snackId);
             $.ajax({
-                url:"/snack/candyImg",
+                url:"/cart/addCart",
                 type:"post",
+                async: true,
                 dataType:"json",
                 data:{
                     "snackId":snackId
                 },
                 success: function (datas) {
-                    var element = document.getElementById(xh+"zp");
-                    element.src=datas.zp;
-
-
+                    console.log("添加成功");
                 }
-
             })
-
         }
-	</script>-->
-	<script>
+        function subcart(obj){
+            var snackId = $(obj).attr("name");
+			console.log(snackId);
+            $.ajax({
+                url:"/cart/subCart",
+                type:"post",
+                async: true,
+                dataType:"json",
+                data:{
+                    "snackId":snackId
+                },
+                success: function (datas) {
+                    console.log("减少成功");
+                }
+            })
+        }
+	</script>
+	<script th:inline="javascript">
 		$(function () {
             var $totalPrice = $(".total-price").children("strong").text();
             if($totalPrice!="" && $totalPrice!="0") {
@@ -303,6 +315,7 @@
                 "border-radius":"6px",
                 "background":"#EF4F4F"
             }).children('strong').css("font-size","14px");
+            addcart(obj);
         }
         // 减少数量
         function subCount(obj) {
@@ -313,6 +326,7 @@
                 obj.siblings('.count').hide();
                 obj.parent().siblings(".price").removeAttr('style').children('strong').removeAttr('style');
             }
+            subcart(obj);
             obj.next().text(count);
         }
 

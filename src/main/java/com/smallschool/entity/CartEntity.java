@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class CartEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cartId;
 
 

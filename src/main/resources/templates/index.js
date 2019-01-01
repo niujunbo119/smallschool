@@ -1,4 +1,4 @@
-$(function () {
+/*$(function () {
     $('#net-loading').show();
     ajaxHttpRequest('v1/index', {
         jsonpCallback: 'handler',
@@ -16,7 +16,7 @@ $(function () {
             $('#net-loading').hide();
         }
     });
-});
+});*/
 
 function handler(data) {
     if (!data.meta.success) {
