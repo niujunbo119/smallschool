@@ -29,52 +29,55 @@
       <!--<div class="choose-address">需要知道您的收货地址</div>-->
       <div class="name-phone">
         <div class="name">
-          <i class="icon icon-85"></i> <span>张益达</span>
+          <i class="icon icon-85"></i> <span th:text="${user_list.getName()}">张益达</span>
         </div>
         <div class="phone">
-          <i class="icon icon-104"></i> <span>18698799879</span>
+          <i class="icon icon-104"></i> <span th:text="${user_list.getPhone()}">18698799879</span>
         </div>
       </div>
-      <div class="d-addr">逸夫楼223</div>
+      <div class="d-addr" th:text="${user_list.getLocation()}">逸夫楼223</div>
     </a>
   </div>
 </section>
+
+
 <article class="main">
   <div class="deliver-date">
     <!--<span><span class="date">06月15日</span>配送</span>-->
   </div>
   <div class="list">
-    <div class="weui_cells weui_cells_checkbox" >
-      <label class="weui_cell weui_check_label" for="s11">
+    <div class="weui_cells weui_cells_checkbox"  th:each="item : ${cart_list}">
+      <label class="weui_cell weui_check_label" th:for="${item.getSnackId()}">
         <div class="weui_cell_hd">
-          <input type="checkbox" class="weui_check" name="checkbox1" id="s11" checked>
+          <input type="checkbox" class="weui_check" name="checkbox1" th:id="${item.getSnackId()}" checked>
           <i class="weui_icon_checked"></i>
         </div>
       </label>
       <div class="weui_cell_bd weui_cell_primary">
         <figure class="item">
           <div class="item-warp">
-            <a class="pic" href="detail.html">
-              <img src="images/dbtnt.jpg" width="110" height="105">
+            <a class="pic" th:href="@{/snack/snackDetail}+${item.getSnackId()}">
+              <img th:each="snack:${snack_list}" th:if="${snack.getSnackId()} eq ${item.getSnackId()}" th:src="${snack.getPicString()}" width="110" height="105">
             </a>
             <figcaption class="detail">
               <div class="info">
-                <strong class="title">大白兔</strong>
-                <em class="desc">0.5元/颗</em>
+                <strong class="title" th:text="${item.getSnackName()}">大白兔</strong>
+                <!--<em class="desc" th:text="${item.getSnackPrice()}">0.5元/颗</em>-->
                 <div class="price">
-                  ￥<strong>0.5</strong>
+                  ￥<strong th:text="${item.getSnackPrice()}">0.5</strong>
                 </div>
               </div>
             </figcaption>
           </div>
           <div class="buy">
             <span class="sub icon icon-122"></span>
-            <span class="count">1</span>
+            <span class="count" th:text="${item.getSnackNumber()}">1</span>
             <span class="add normal icon icon-36"></span>
           </div>
         </figure>
       </div>
     </div>
+<!--
     <div class="weui_cells weui_cells_checkbox">
       <label class="weui_cell weui_check_label" for="s12">
         <div class="weui_cell_hd">
@@ -147,7 +150,7 @@
       </label>
       <div class="weui_cell_bd weui_cell_primary">
         <figure class="item">
-          <!--<div class="item-warp">-->
+          &lt;!&ndash;<div class="item-warp">&ndash;&gt;
           <div class="no-all">
             <a class="pic" href="detail.html">
               <img src="images/tls.jpg" width="110" height="105">
@@ -169,6 +172,7 @@
         </figure>
       </div>
     </div>
+-->
 
     <div class="hint">
       <span class="price">共<span id="cost" class="cost">0.0</span>元，</span>
