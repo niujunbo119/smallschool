@@ -1,9 +1,6 @@
 package com.smallschool.controller;
 
-import com.smallschool.entity.CartEntity;
-import com.smallschool.entity.SnackEntity;
-import com.smallschool.entity.SnackOrderEntity;
-import com.smallschool.entity.UserEntity;
+import com.smallschool.entity.*;
 import com.smallschool.service.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +30,16 @@ public class SnackOrderController {
 
     @Autowired
     SnackRepository snackRepository;
+    @Autowired
+    DeliverRepository   deliverRepository;
+
+    @Autowired
+    SnackOrderRepository snackOrderRepository;
 
     @RequestMapping("/toShopCart")
-    public String shopcart(Map map){
+    public String shopcart(Map map, HttpServletRequest request){
 
-        UserEntity user_list = userRepository.findById(1).orElse(null);
+
         List<CartEntity> cart_list = cartRepository.findAll();
         List<SnackEntity> snack_list =new ArrayList<>();
         SnackEntity snackEntity =null;
@@ -45,36 +50,86 @@ public class SnackOrderController {
             snackEntity.setPicString(pic);
             snack_list.add(snackEntity);
         }
+        if (request.getSession().getAttribute("address") !=null){
+            map.put("user_list",request.getSession().getAttribute("address"));
+        }else {
+            UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+            map.put("user_list",user);
+        }
 
-
-        map.put("user_list",user_list);
         map.put("cart_list",cart_list);
         map.put("snack_list",snack_list);
+
         return "shopcart";
     }
 
     @RequestMapping("/changeDeliver")
-    public String changeDeliver(Map map){
-        List<UserEntity> user_list = userRepository.findAll();
-        map.put("user_list",user_list);
+    public String changeDeliver(Map map ,HttpServletRequest request){
+//        List<UserEntity> user_list = userRepository.findAll();
+        UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+        List<DeliverEntity> deliverEntityList = deliverRepository.findByUserPhone(user.getPhone());
+        map.put("deliver_list",deliverEntityList);
         return "deliver";
+    }
+
+    /*
+    * 如果切换默认地址，则将该地址信息存入session
+    * */
+    @RequestMapping("/changeAddress/{deliverId}")
+    public String changeAddress(@PathVariable("deliverId") String deliverId,Map map,HttpServletRequest request){
+        DeliverEntity deliverEntity =deliverRepository.findById(deliverId).orElse(null);
+
+        request.getSession().setAttribute("address",deliverEntity);
+
+        return "redirect:/snackOrder/toShopCart";
+
     }
 
     @RequestMapping("/payment")
     public String payment(@RequestParam("totalPrices") String totalPrice,
-                          @RequestParam("receiveUser") String receiveUser, Model model){
+                          @RequestParam("receiveUser") String receiveUser,
+                          @RequestParam("receiveAddress") String receiveAddress,
+                          @RequestParam("receivePhone") String receivePhone,Model model,HttpServletRequest request){
 
-        UserEntity user= userRepository.findByName(receiveUser);
-
-        Float totalPrices = Float.parseFloat(totalPrice);
-
-        /*map.put("user",user);
-        map.put("totalPrice",totalPrices);*/
-        model.addAttribute("user",user);
-        System.out.println(user.toString());
+        model.addAttribute("user",receiveUser);
+        model.addAttribute("phone",receivePhone);
+        model.addAttribute("address",receiveAddress);
         model.addAttribute("totalPrice",totalPrice);
 
 //        System.out.println(totalPrice);
         return "payment";
     }
+
+    @RequestMapping("/checkout")
+    public String checkout(@RequestParam("totalPrices") String totalPrice,
+                           @RequestParam("receiveUser") String receiveUser,
+                           @RequestParam("receiveAddress") String receiveAddress,
+                           @RequestParam("receivePhone") String receivePhone,
+                           @RequestParam("deliverTime") String deliverTime,
+                           @RequestParam("note") String note,HttpServletRequest request,Map map){
+
+        SnackOrderEntity snackOrderEntity=new SnackOrderEntity();
+        Date date =new Date();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderSnackId =sdf.format(date);
+        UserEntity  userEntity= (UserEntity)request.getSession().getAttribute("user");
+
+        snackOrderEntity.setOrderSnackId(orderSnackId);
+        snackOrderEntity.setUserId(userEntity.getUserId());
+        snackOrderEntity.setAddress(receiveAddress);
+        snackOrderEntity.setName(receiveUser);
+        snackOrderEntity.setPhone(receivePhone);
+        snackOrderEntity.setOrderTime(date);
+        snackOrderEntity.setTotalCost(Float.parseFloat(totalPrice));
+        snackOrderEntity.setDeliverTime(deliverTime);
+        snackOrderEntity.setNote(note);
+
+        snackOrderRepository.save(snackOrderEntity);
+
+        map.put("orderSnackId",orderSnackId);
+        map.put("deliverTime",deliverTime);
+        return "buy-success";
+    }
+
+
 }

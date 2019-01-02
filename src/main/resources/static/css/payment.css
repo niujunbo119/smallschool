@@ -445,7 +445,13 @@ header .weui-header {
   padding-right: 15px;
   background: #FF5A1E;
 }
-
+.checkout{
+  background-color:#FF5E23;
+  float: right;
+  width: 80px;
+  height: 40px;
+  margin-right: 10px;
+}
 
 
 

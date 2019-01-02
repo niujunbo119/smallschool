@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>送货地址</title>
+  <title>编辑地址</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -10,39 +10,54 @@
   <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
   <link rel="stylesheet" th:href="@{/css/mall.css}"/>
   <link rel="stylesheet" th:href="@{/css/my-deliver.css}">
+
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+  <script th:src="@{/js/jquery.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+
 </head>
 <body ontouchstart>
 <header class="header">
-  地址管理：
-  <a class="deliver-add" th:href="@{/user/toAddAddress}">+</a>
+  编辑地址：
+  <!--<a class="deliver-add" th:href="@{/}">+</a>-->
 </header>
 
 <article class="main" >
   <section id="home-delivery" class="home-delivery ">
-    <ul class="address-list" >
-      <li class="item" th:each="item:${deliver_list}">
-        <span class="activate"></span>
-        <div class="a-main">
-          <a href="javascript:;">
-            <div class="a-left">
-              <div class="a-top">
-                <span class="name" th:text="${item.getName()}"></span>
-                <span class="sex" th:text="'&nbsp('+${item.getGender()}+')'"></span>
-                <span class="phone" th:text="${item.getPhone()}"></span>
-              </div>
-              <div class="bottom">
-                <span class="tag">地址：</span>
-                <span class="addr" th:text="${item.getAddress()}">address</span>
-              </div>
-            </div>
-          </a>
-          <div class="a-right">
-            <a class="icon icon-116" th:href="@{/user/toUpdate/}+${item.getDeliverId()}"></a>
+    <form class="form-add" th:align="center" role="form" name="form" th:action="@{/user/update/}+${deliverEntity.getDeliverId()}" method="post">
+      <table border="0">
+        <tr>
+          <td width="80px" height="40px"><label for="recipients">联系人：</label></td>
+          <td><input type="text" name="recipients" id="recipients" placeholder="" th:value="${deliverEntity.getName()}"></td>
+        </tr>
+        <tr>
+          <td width="80px" height="40px"><label for="recPhone">电话：</label></td>
+          <td><input type="number" name="recPhone"  id="recPhone" placeholder="" th:value="${deliverEntity.getPhone()}"></td>
+        </tr>
+        <tr>
+          <td width="80px" height="40px"><label for="recGender">性别：</label></td>
+          <td><select name="recGender" id="recGender" style="size:60px;width: 80px">
+            <option value="先生" th:selected="${deliverEntity.getGender()} eq '先生'" >先生</option>
+            <option value="女士" th:selected="${deliverEntity.getGender()} eq '女士'">女士</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td width="80px" height="40px"><label for="address">地址：</label></td>
+          <td><input type="text" name="address"  id="address" placeholder="" th:value="${deliverEntity.getAddress()}"></td>
+        </tr>
+
+      </table>
+        <div class="form-group">
+          <div>
+            <input type="submit" value="确认" class="btn btn-info">
+            <input type="reset" value="重置" class="btn btn-danger">
           </div>
         </div>
-      </li>
 
-    </ul>
+    </form>
+
   </section>
 </article>
 

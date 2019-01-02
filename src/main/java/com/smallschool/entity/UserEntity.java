@@ -23,25 +23,21 @@ public class UserEntity {
     @Column(name = "major",nullable = false)
     private String major;
     @Column(name = "location",nullable = false)
-    private String location;
-    @Column(name = "location2")
-    private String location2;
-    @Column(name = "location3")
-    private String location3;
+    private String address;
+
 
     public UserEntity() {
     }
 
-    public UserEntity(String phone, String password, String name, String gender, String college, String major, String location, String location2, String location3) {
+    public UserEntity(String phone, String password, String name, String gender, String college, String major, String address) {
         this.phone = phone;
         this.password = password;
         this.name = name;
         this.gender = gender;
         this.college = college;
         this.major = major;
-        this.location = location;
-        this.location2 = location2;
-        this.location3 = location3;
+        this.address = address;
+
     }
 
     public int getUserId() {
@@ -100,29 +96,15 @@ public class UserEntity {
         this.major = major;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getLocation2() {
-        return location2;
-    }
 
-    public void setLocation2(String location2) {
-        this.location2 = location2;
-    }
-
-    public String getLocation3() {
-        return location3;
-    }
-
-    public void setLocation3(String location3) {
-        this.location3 = location3;
-    }
 
     @Override
     public String toString() {
@@ -134,9 +116,7 @@ public class UserEntity {
                 ", gender='" + gender + '\'' +
                 ", college='" + college + '\'' +
                 ", major='" + major + '\'' +
-                ", location='" + location + '\'' +
-                ", location2='" + location2 + '\'' +
-                ", location3='" + location3 + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

@@ -16,22 +16,41 @@ public class SnackOrderEntity {
 
     private int snackId;
 
-    private int snackNumber;
+    private String name;
+
+    private String phone;
 
     private Date orderTime;
 
+    private String address;
+
+    private String deliverTime;
+
     private float totalCost;
+
+    private String note;
 
     public SnackOrderEntity() {
     }
 
-    public SnackOrderEntity(String orderSnackId, int userId, int snackId, int snackNumber, Date orderTime, float totalCost) {
+    public SnackOrderEntity(String orderSnackId, int userId, int snackId, String name, String phone, Date orderTime, String address,String deliverTime, float totalCost) {
         this.orderSnackId = orderSnackId;
         this.userId = userId;
         this.snackId = snackId;
-        this.snackNumber = snackNumber;
+        this.name = name;
+        this.phone = phone;
         this.orderTime = orderTime;
+        this.address = address;
+        this.deliverTime = deliverTime;
         this.totalCost = totalCost;
+    }
+
+    public String getDeliverTime() {
+        return deliverTime;
+    }
+
+    public void setDeliverTime(String deliverTime) {
+        this.deliverTime = deliverTime;
     }
 
     public String getOrderSnackId() {
@@ -58,12 +77,20 @@ public class SnackOrderEntity {
         this.snackId = snackId;
     }
 
-    public int getSnackNumber() {
-        return snackNumber;
+    public String getName() {
+        return name;
     }
 
-    public void setSnackNumber(int snackNumber) {
-        this.snackNumber = snackNumber;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Date getOrderTime() {
@@ -74,6 +101,14 @@ public class SnackOrderEntity {
         this.orderTime = orderTime;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public float getTotalCost() {
         return totalCost;
     }
@@ -82,15 +117,26 @@ public class SnackOrderEntity {
         this.totalCost = totalCost;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     @Override
     public String toString() {
         return "SnackOrderEntity{" +
                 "orderSnackId='" + orderSnackId + '\'' +
                 ", userId=" + userId +
                 ", snackId=" + snackId +
-                ", snackNumber=" + snackNumber +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
                 ", orderTime=" + orderTime +
+                ", address='" + address + '\'' +
                 ", totalCost=" + totalCost +
                 '}';
     }
 }
+

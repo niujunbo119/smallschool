@@ -79,7 +79,7 @@ body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcap
 .main .home-delivery .address-list .item .a-left .a-top {
   height: 28px;
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 20px;
   color: #8c8c8c;
   line-height: 30px;
 }
@@ -105,7 +105,7 @@ body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcap
 }
 .main .home-delivery .address-list .item .a-left .bottom .tag {
   /*height: 20px;*/
-  font-size: 16px;
+  font-size: 18px;
   padding: 0 4px;
   color: #ffffff;
   background: darkorange;
@@ -116,7 +116,7 @@ body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcap
 }
 .main .home-delivery .address-list .item .a-left .bottom .addr {
   height: 37px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 37px;
   color: #333;
   text-indent: 6px;
@@ -154,4 +154,17 @@ body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcap
   line-height: 50px;
   text-align: center;
   display: block;
+}
+.deliver-add{
+  float: right;
+  color: orangered;
+  size: A3;
+  margin-right: 20px;
+}
+
+.form-add{
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: large;
+
 }

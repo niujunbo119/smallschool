@@ -23,6 +23,7 @@
       </div>
     </div>
   </header>
+  <form th:action="@{/snackOrder/checkout}" method="get">
   <article class="content">
     <section class="addr">
       <h1 class="title">收货信息</h1>
@@ -31,20 +32,20 @@
           <div class="m-addr">
             <div class="name-phone">
               <div class="name">
-                <i class="icon icon-85"></i> <span th:text="${user.getName()}">张益达</span>
+                <i class="icon icon-85"></i> <span id="receive_user" th:text="${user}">张益达</span>
               </div>
               <div class="phone">
-                <i class="icon icon-104"></i> <span th:text="${user.getPhone()}">18698799879</span>
+                <i class="icon icon-104"></i> <span id="receive_phone" th:text="${phone}">18698799879</span>
               </div>
             </div>
-            <div class="d-addr" th:text="${user.getLocation()}">逸夫楼223</div>
+            <div class="d-addr" id="address" th:text="${address}">逸夫楼223</div>
           </div>
           <a id='select-data' class="weui_panel_ft m-date" href="javascript:void(0);">
             <div class="weui_cell_hd">
               <label>送货时间</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-              <input class="weui_input" type="text" readonly value="请选择送货时间"/>
+              <input class="weui_input" type="text" name="deliverTime" readonly value="请选择送货时间"/>
             </div>
           </a>
         </div>
@@ -115,7 +116,7 @@
           <div class="txt weui_cell_hd weui_cell_primary">
             <div class="txt">余额</div>
             <div class="total">
-              可用余额：￥<span>9999.9</span>
+              可用余额：￥<span>99.9</span>
             </div>
           </div>
           <div class="weui_cell_ft">
@@ -129,7 +130,7 @@
     <section class="remark">
       <div class="weui_cell">
         <div class="weui_cell_bd weui_cell_primary">
-          <textarea class="weui_textarea" placeholder="订单备注（60字以内）" rows="3"></textarea>
+          <textarea name="note" class="weui_textarea" placeholder="订单备注（60字以内）" rows="3"></textarea>
           <div class="weui_textarea_counter"><span id='textarea_num'>剩余60字</span></div>
         </div>
       </div>
@@ -180,11 +181,17 @@
   <footer class="footer">
     <div class="f-main">
       <div class="price">
-        应付金额:<span class="total" th:text="'￥'+${totalPrice}+'元'">￥5.50元</span>
+        应付金额:<span class="total" id="amount" th:text="'￥'+${totalPrice}+'元'">￥5.50元</span>
       </div>
-      <div class="pay"><a href="javascript:;">去付款</a></div>
+      <div class="pay"><button onmousedown="getAllInfo()" class="checkout" type="submit">去付款</button></div>
     </div>
   </footer>
+    <input  type="hidden" id="totalPrices" name="totalPrices" th:value="${totalPrice}">
+    <input  type="hidden" id="receiveUser" name="receiveUser" value="">
+    <input  type="hidden" id="receiveAddress" name="receiveAddress" value="">
+    <input  type="hidden" id="receivePhone" name="receivePhone" value="">
+
+  </form>
 </body>
 <script th:src="@{/js/lib/zepto.min.js}"></script>
 <script th:src="@{/js/lib/picker.js}"></script>
@@ -208,5 +215,18 @@
 //      $.alert("你选择了" + d.values + d.titles);
     }
   });
+  function getAllInfo() {
+      /*var totalPrice =document.getElementById("amount").innerHTML;
+      console.log(totalPrice);
+      document.getElementById("totalPrices").value = totalPrice;*/
+
+      var receiveUsers =document.getElementById("receive_user").innerHTML;
+      document.getElementById("receiveUser").value = receiveUsers;
+
+      var receiveAddresss =document.getElementById("address").innerHTML;
+      document.getElementById("receiveAddress").value = receiveAddresss;
+      var receivePhones =document.getElementById("receive_phone").innerHTML;
+      document.getElementById("receivePhone").value = receivePhones;
+  }
 </script>
 </html>
