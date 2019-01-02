@@ -146,6 +146,7 @@ $(function () {
         var num = parseInt(numObj.text());
         num += 1;
         numObj.text(num);
+        addcart(obj);
     };
     // 减少数量和单个商品的价格
     function subCountAndSinglePrice(obj) {
@@ -174,6 +175,7 @@ $(function () {
                 //取消操作
             });
         }
+        subcart(obj);
     };
     // 添加单个商品金额
     function addSinglePrice(obj) {
@@ -231,5 +233,37 @@ $(function () {
         });
         $('#amount').text(totalPrice.toFixed(1));
         addSubtotal(totalPrice);
+    };
+    function addcart(obj){
+        var snackId = $(obj).attr("name");
+        console.log(snackId);
+        $.ajax({
+            url:"/cart/addCart",
+            type:"post",
+            async: true,
+            dataType:"json",
+            data:{
+                "snackId":snackId
+            },
+            success: function (datas) {
+                console.log("添加成功");
+            }
+        })
+    };
+    function subcart(obj){
+        var snackId = $(obj).attr("name");
+        console.log(snackId);
+        $.ajax({
+            url:"/cart/subCart",
+            type:"post",
+            async: true,
+            dataType:"json",
+            data:{
+                "snackId":snackId
+            },
+            success: function (datas) {
+                console.log("减少成功");
+            }
+        })
     };
 });

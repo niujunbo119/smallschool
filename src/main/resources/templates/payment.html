@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>结算</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="style/weui.css"/>
-  <link rel="stylesheet" href="css/weui2.css"/>
-  <link rel="stylesheet" href="css/payment.css">
+  <link rel="stylesheet" th:href="@{/style/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/payment.css}">
 </head>
 <body ontouchstart>
   <header class="header">
@@ -31,13 +31,13 @@
           <div class="m-addr">
             <div class="name-phone">
               <div class="name">
-                <i class="icon icon-85"></i> <span>张益达</span>
+                <i class="icon icon-85"></i> <span th:text="${user.getName()}">张益达</span>
               </div>
               <div class="phone">
-                <i class="icon icon-104"></i> <span>18698799879</span>
+                <i class="icon icon-104"></i> <span th:text="${user.getPhone()}">18698799879</span>
               </div>
             </div>
-            <div class="d-addr">逸夫楼223</div>
+            <div class="d-addr" th:text="${user.getLocation()}">逸夫楼223</div>
           </div>
           <a id='select-data' class="weui_panel_ft m-date" href="javascript:void(0);">
             <div class="weui_cell_hd">
@@ -138,7 +138,7 @@
     <section class="cost">
       <h1 class="title">费用明细</h1>
       <div class="main">
-        <div class="item-list weui_panel weui_panel_access">
+        <!--<div class="item-list weui_panel weui_panel_access">
           <a class="weui_panel_ft" href="list.html">
             <div class="imgs">
               <img src="images/dbtnt.jpg">
@@ -153,15 +153,15 @@
               共<span>3</span>件
             </div>
           </a>
-        </div>
+        </div>-->
         <div class="amount">
           <div class="detail">
             <span class="txt">商品金额</span>
-            <em class="price">￥<span>5.0</span></em>
+            <em class="price">￥<span th:text="${totalPrice}">5.0</span></em>
           </div>
           <div class="detail">
             <span class="txt">运费</span>
-            <em class="price">￥<span>0.5</span></em>
+            <em class="price">￥<span>0</span></em>
           </div>
           <div class="detail">
             <span class="txt">优惠券抵销</span>
@@ -180,16 +180,16 @@
   <footer class="footer">
     <div class="f-main">
       <div class="price">
-        应付金额:<span class="total">￥5.50元</span>
+        应付金额:<span class="total" th:text="'￥'+${totalPrice}+'元'">￥5.50元</span>
       </div>
       <div class="pay"><a href="javascript:;">去付款</a></div>
     </div>
   </footer>
 </body>
-<script src="js/lib/zepto.min.js"></script>
-<script src="js/lib/picker.js"></script>
-<script src="js/example.js"></script>
-<script src="js/payment.js"></script>
+<script th:src="@{/js/lib/zepto.min.js}"></script>
+<script th:src="@{/js/lib/picker.js}"></script>
+<script th:src="@{/js/example.js}"></script>
+<script th:src="@{/js/payment.js}"></script>
 <script>
   $("#select-data").select({
     title: "送货时间",

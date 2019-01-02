@@ -10,7 +10,7 @@
   <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
   <link rel="stylesheet" th:href="@{/css/myinfo.css}">
 </head>
-<body ontouchstart th:each="user:${user_list}">
+<body ontouchstart th:each="user:${user}">
     <header class="header">
       <div class="main">
         <div class="avatar">
@@ -216,6 +216,16 @@
                   <p>联系客服</p>
                 </div>
                 <span class="phone">800-820-8820</span>
+              </a>
+              <a class="weui_cell" th:href="@{/logout}">
+                <div class="weui_cell_hd">
+                  <i class="i-set icon icon-102"></i>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                  <p>退出登录</p>
+                  <!--<a href="login.html">去登陆</a>-->
+                </div>
+                <span class="weui_cell_ft"></span>
               </a>
             </div>
           </div>

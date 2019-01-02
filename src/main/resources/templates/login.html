@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>小校园</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<!--<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>-->
+
+
+<body>
+	<!-- 顶部登录注册 -->
+	<header class="main_top">
+		<form th:action="@{/snack/index}">
+		<input type="submit" class="main_top_size" value="" ></form>
+		<span>登录</span>
+		<a th:href="register.html">
+			<span class="main_top_registered">注册</span>		
+		</a>
+	</header>
+	<div class="main">
+		<!-- logo部分 -->
+		<div class="logo">
+			<img src="/images/logo.jpg" alt="logo">
+		</div>
+		<!-- 手机号密码部分 -->
+
+		<form th:action="@{/login}" method="get" >
+		<div class="mobile">
+			<div class="center">
+				<form method="post">
+					<div class="icon gen">
+						<input type="text" name="phone" placeholder="请输入手机号">
+					</div>
+					<div class="password gen">
+						<input type="password" name="password" placeholder="请输入密码">
+						<span class="eyes"></span>
+					</div>
+					<p style="color: red;font-size: large" align="center" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+					<p class="forgot">忘记密码</p>
+					<div class="sub">
+
+							<input type="submit" value="登录" id="btn" />
+
+					</div>
+				</form>
+			</div>
+		</div>
+		</form>
+	</div>
+	<footer>
+		<div class="share">
+			<div class="left"></div>
+			<div class="text">其他方式登录</div>
+			<div class="right"></div>
+		</div>
+		<div class="share-icon">
+			<div class="qq"></div>
+			<div class="weixin"></div>
+		</div>
+	</footer>
+</body>
+<script th:src="@{/js/login.js}"></script>
+</html>

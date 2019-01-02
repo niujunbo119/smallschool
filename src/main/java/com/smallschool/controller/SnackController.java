@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,13 @@ public class SnackController {
      * 转入index主页
      * */
     @RequestMapping({"/","/index"})
-    public String main(Map map){
+    public String main(Map map, HttpSession httpSession){
+
+        Object userEntity =httpSession.getAttribute("user");
+//        System.out.println(userEntity.toString());
+        UserEntity user = (UserEntity)userEntity;
+        map.put("user",user);
+
         return "index";
     }
 

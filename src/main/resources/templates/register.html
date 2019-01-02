@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>小校园</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<script th:src="@{http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js}"></script>
+
+<body>
+	<!-- 顶部登录注册 -->
+	<header class="main_top">
+		<span class="main_top_size"></span>
+		<!--<span>登录</span>-->
+		<span class="main_top_registered">注册</span>
+	</header>
+	<div class="main">
+		<!-- logo部分 -->
+		<!--<div class="logo">
+			<img src="img/logo.jpg">
+		</div>-->
+		<!-- 手机号密码部分 -->
+		<div class="mobile">
+			<div class="center">
+				<form method="post">
+					<div <!--class="icon gen"-->>
+						<input type="text" name="mobile" placeholder="">
+					</div>
+					<div class="icon gen">
+						<input type="text" name="mobile" placeholder="请输入手机号">
+					</div>
+					<div class="password gen">
+						<input type="password" name="password" placeholder="请输入密码">
+					</div>
+					<div class="password gen">
+						<input type="password" name="password" placeholder="请确认密码">
+					</div>
+					<div class="sub">
+						<a href="login.html">
+							<input type="submit" value="注册" id="btn"/>
+						</a>			
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

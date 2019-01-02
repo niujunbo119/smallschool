@@ -1,0 +1,194 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.main {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.back {
+	width: 0.1rem;
+}
+
+.main_top {
+	width: 100%;
+	height: 1.3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #ffffff;
+	background: #3884dd;
+	font-size: 0.5rem;
+}
+
+.main_top .main_top_size {
+	width: .8rem;
+	height: .8rem;
+	background: url('../images/back.svg') no-repeat;
+	background-size: 100%;
+	margin-left: 0.2rem;
+}
+
+.main_top .main_top_registered {
+	font-size: 0.5rem;
+	margin-right: 0.3rem;
+}
+
+/*logo部分*/
+
+.main .logo {
+	/*width: 10rem;*/
+	width: 400px;
+	/*height: 5rem;*/
+	height: 200px;
+
+}
+
+.main .logo img {
+	width: 40%;
+	margin: 0.6rem auto;
+	display: block;
+}
+
+.main .mobile {
+	width: 10rem;
+	height: 6rem;
+}
+
+.main .mobile .center {
+	width: 8rem;
+	height: 6rem;
+	margin-left: 1rem;
+	overflow: hidden;
+}
+
+.main .mobile .center input {
+	width: 6rem;
+	height: 0.7rem;
+	border: none;
+	margin-left: -0.2rem;
+}
+
+input::-webkit-input-placeholder {
+	color: #d0d0d6;
+}
+
+input::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #d0d0d6;
+}
+
+input:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #d0d0d6;
+}
+
+input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #d0d0d6;
+}
+
+.main .mobile .center .gen {
+	background-repeat: no-repeat;
+	background-size: 0.7rem;
+	padding-left: 1rem;
+	border-bottom: 1px solid #dee0e2;
+	width: 8rem;
+	height: 1rem;
+}
+
+.main .mobile .center .icon {
+	background-image: url('../images/default_icon_tel@3x.png');
+}
+
+.main .mobile .center .password {
+	margin-top: 0.5rem;
+	background-image: url('../images/default_icon_password@3x.png');
+}
+
+.main .mobile .center .eyes {
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	background-image: url('../images/default_icon_eye@3x.png');
+	background-repeat: no-repeat;
+	background-size: 0.6rem;
+	vertical-align: top;
+}
+
+.main .mobile .center .sub {
+	width: 8rem;
+	height: 1rem;
+	display: block;
+	background-image: url('../images/default_btn@3x.png');
+	background-repeat: no-repeat;
+	background-size: 8rem 1rem;
+	margin-top: 0.5rem;
+}
+
+.main .mobile .center .forgot {
+	padding-top: 0.5rem;
+	text-align: right;
+}
+
+#btn {
+	width: 8rem;
+	height: 1rem;
+	background: none;
+	color: white;
+	font-size: 16px;
+}
+
+.share {
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.share .left {
+	width: 2.5rem;
+	height: 0.05rem;
+	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(rgba(255, 255, 255, 0)), to(rgba(183, 186, 188, 1)));
+}
+
+.share .text {
+	color: #b7babc;
+	font-size: 0.1rem;
+}
+
+.share .right {
+	width: 2.5rem;
+	height: 0.05rem;
+	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(rgba(183, 186, 188, 1)), to(rgba(255, 255, 255, 0)));
+}
+
+footer {
+	clear: both;
+}
+
+.share-icon {
+	clear: both;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+    height: 2rem;
+}
+
+.qq {
+	width: 1rem;
+	height: 1rem;
+	background-image: url("../images/default_icon_qq@3x.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.weixin {
+	width: 1rem;
+	height: 1rem;
+	background-image: url("../images/default_icon_wechat@3x.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}

@@ -344,7 +344,10 @@ header .weui-header {
 }*/
 .footer .f-main .submit {
   height: 50px;
+  width: 80px;
   float: right;
+  font-size: large;
+  background: #EA8010;
 }
 .footer .f-main .submit a {
   height: 50px;

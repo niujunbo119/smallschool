@@ -48,7 +48,7 @@
       <td width="20%" height="40px">小费</td>
       <td width="10%"></td>
     </tr>
-    <tr th:each="service:${service_list}" >
+    <tr  th:each="service:${service_list}" >
 
       <td th:text="${service.serviceName}" width="30%" height="40px"></td>
       <td th:text="${service.serviceContent}" width="50%" height="40px"></td>

@@ -8,7 +8,8 @@ import com.smallschool.service.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,4 +53,28 @@ public class SnackOrderController {
         return "shopcart";
     }
 
+    @RequestMapping("/changeDeliver")
+    public String changeDeliver(Map map){
+        List<UserEntity> user_list = userRepository.findAll();
+        map.put("user_list",user_list);
+        return "deliver";
+    }
+
+    @RequestMapping("/payment")
+    public String payment(@RequestParam("totalPrices") String totalPrice,
+                          @RequestParam("receiveUser") String receiveUser, Model model){
+
+        UserEntity user= userRepository.findByName(receiveUser);
+
+        Float totalPrices = Float.parseFloat(totalPrice);
+
+        /*map.put("user",user);
+        map.put("totalPrice",totalPrices);*/
+        model.addAttribute("user",user);
+        System.out.println(user.toString());
+        model.addAttribute("totalPrice",totalPrice);
+
+//        System.out.println(totalPrice);
+        return "payment";
+    }
 }

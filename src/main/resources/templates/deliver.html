@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>送货地址</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="css/weui.css"/>
-  <link rel="stylesheet" href="css/weui2.css"/>
-  <link rel="stylesheet" href="css/deliver.css">
+  <link rel="stylesheet" th:href="@{/css/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/deliver.css}">
 </head>
 <body ontouchstart>
 <header class="header">
@@ -118,7 +118,7 @@
   <a href="javascript:;" class="txt">新建收货地址</a>
 </footer>
 </body>
-<script src="js/lib/zepto.min.js"></script>
-<script src="js/deliver.js"></script>
-<script src="js/example.js"></script>
+<script th:src="@{/js/lib/zepto.min.js}"></script>
+<script th:src="@{/js/deliver.js}"></script>
+<script th:src="@{/js/example.js}"></script>
 </html>
