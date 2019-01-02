@@ -50,7 +50,7 @@
     <div class="weui_cells weui_cells_checkbox"  th:each="item : ${cart_list}">
       <label class="weui_cell weui_check_label" th:for="${item.getSnackId()}">
         <div class="weui_cell_hd">
-          <input type="checkbox" class="weui_check" name="checkbox1" th:id="${item.getSnackId()}" checked>
+          <input type="checkbox" class="weui_check" th:name="'checkboxItem'+${item.getSnackId()}" th:id="${item.getSnackId()}" checked>
           <i class="weui_icon_checked"></i>
         </div>
       </label>
@@ -92,7 +92,7 @@
     <div id="allSelect" class="weui_cells weui_cells_checkbox">
       <label class="weui_cell weui_check_label" for="all">
         <div class="weui_cell_hd">
-          <input type="checkbox" class="weui_check" name="checkbox1" id="all">
+          <input type="checkbox" class="weui_check" name="checkboxAll" id="all">
           <i class="weui_icon_checked"></i>
         </div>
         <p>全选</p>

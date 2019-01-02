@@ -58,7 +58,7 @@
 
   </table>
 
-  <button type="submit" style="width: 150px;height: 60px">接受任务 换成图片</button>
+  <button type="submit" style="width: 150px;height: 60px">接受任务</button>
 </form>
 
 
@@ -113,4 +113,13 @@
 <script src="/js/example.js"></script>
 <script src="js/lib/zepto.min.js"></script>
 <script src="js/example.js"></script>
+<script>
+  function confir() {
+      $.confirm("您确定要接受吗?", "确认", function () {
+
+      }, function () {
+          //取消操作
+      });
+  }
+</script>
 </html>

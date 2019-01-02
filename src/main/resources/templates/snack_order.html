@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="/css/weui.css"/>
-  <link rel="stylesheet" href="/css/weui2.css"/>
-  <link rel="stylesheet" href="/css/order.css">
+  <link rel="stylesheet" th:href="@{/css/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/order.css}">
 
   <script>
     /*function toDetails (name) {
@@ -41,24 +41,24 @@
 <div class="weui-header-right">
   <table border="0" style="text-align: center;width: 100%">
     <tr style="text-align: center">
-      <td style="text-align: center"><a th:href="@{/snackOrder/toShopCart}" class="icon icon-4 f-orange">商品订单</a></td>
+      <td style="text-align: center"><a th:href="@{/snackOrder/toOrder}" class="icon icon-4 f-orange">商品订单</a></td>
       <td style="text-align: center"><a th:href="@{/service/toOrder}" class="icon icon-4 f-orange">服务订单</a></td>
     </tr>
   </table>
 </div>
   <article class="main">
 
-    <section class="order" th:each="item :${service_order}" >
+    <section class="order" th:each="item :${snack_order_list}" >
       <div class="order-warp">
         <div class="info">
           <span class="date">
             <i class="icon icon-51"></i>
-            <span class="detail" th:text="${item.orderServiceStime}">2016-05-24 21:11:59</span>
+            <span class="detail" th:text="${item.getOrderTime()}">2016-05-24 21:11:59</span>
           </span>
-          <span class="num">订单号：<em th:text="${item.orderServiceId}">16716687</em></span>
+          <span class="num">订单号：<em th:text="${item.getOrderSnackId()}">16716687</em></span>
         </div>
         <a class="weui_panel_access" href="javascript:void(0);">
-          <div class="weui_panel_ft" th:text="${item.serviceContent}">服务内容填充</div>
+          <div class="weui_panel_ft" th:text="'估计送达时间：'+${item.getDeliverTime()}"></div>
           <div class="schedule">
             <div class="flow start">
               <div class="icons">
@@ -70,29 +70,24 @@
             <div class="flow end">
               <div class="icons">
                 <span class="s-icon s-icon-l">...</span>
-                <span class="bg-icon bg-icon-normal" th:if="${item.orderServiceStatus} ne 1" th:attr="class=@{bg-icon bg-icon-normal}"></span>
-                <span class="bg-icon bg-icon-invalid" th:if="${item.orderServiceStatus} eq 1" th:attr="class=@{bg-icon bg-icon-invalid}"></span>
+                <span class="bg-icon bg-icon-normal" ></span>
                 <span class="s-icon s-icon-r">...</span>
               </div>
-              <div class="status" th:if="${item.orderServiceStatus} eq 1" th:attr="class=@{status invalid}">进行中</div>
-              <div class="status" th:if="${item.orderServiceStatus} ne 1" th:attr="class=@{status}">进行中</div>
+              <div class="status">进行中</div>
             </div>
             <div class="flow end">
               <span class="icons">
                 <span class="s-icon s-icon-l">...</span>
-                <span class="bg-icon bg-icon-normal" th:if="${item.orderServiceStatus} eq 3" th:attr="class=@{bg-icon bg-icon-normal}"></span>
-                <span class="bg-icon bg-icon-invalid" th:if="${item.orderServiceStatus} ne 3" th:attr="class=@{bg-icon bg-icon-invalid}"></span>
+                <span class="bg-icon bg-icon-invalid"></span>
                 <span>&nbsp;</span>
-              <div class="status" th:if="${item.orderServiceStatus} eq 3" th:attr="class=@{status}">已完成</div>
-              <div class="status invalid" th:if="${item.orderServiceStatus} ne 3" th:attr="class=@{status invalid}">已完成</div>
+              <div class="status invalid">已完成</div>
               </span>
             </div>
           </div>
         </a>
         <div class="buy-info">
-         <span class="price">￥<span th:text="${item.orderServiceFee}">36.5</span></span>
-           <a class="comment comment-invalid" th:if="${item.orderServiceStatus} ne 3" th:attr="class=@{comment comment-invalid}">评价订单</a>
-           <a class="comment comment-invalid" th:if="${item.orderServiceStatus} eq 3" th:attr="class=@{comment comment-normal}">评价订单</a>
+         <span class="price">￥<span th:text="${item.getTotalCost()}">36.5</span></span>
+           <a class="comment comment-invalid" >评价订单</a>
     <!--    <a class="comment comment-invalid">无效订单</a>-->
         </div>
       </div>

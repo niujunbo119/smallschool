@@ -131,5 +131,13 @@ public class SnackOrderController {
         return "buy-success";
     }
 
+    @RequestMapping("/toOrder")
+    public String order(Map map){
+        List<SnackOrderEntity> snack_order_list = snackOrderRepository.findAll();
+
+        map.put("snack_order_list",snack_order_list);
+        return "snack_order";
+    }
+
 
 }
