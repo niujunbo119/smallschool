@@ -30,10 +30,11 @@
     </div>
   </div>
 </header>
-<form th:action="@{#}" th:align="center" >
+<form th:action="@{/service/saveServerOrder}" th:align="center" >
   <table border="1"  style="font-size: large;color: black;text-align: left">
     <tr style="font-weight: bold;color: black" th:each="service:${service_detail}">
-      <td th:name="serviceId" th:width="90px" th:height="30px" th:text="'--  服务编号： '+${service.serviceId}"></td>
+      <td th:name="serviceID" th:width="90px"  th:height="30px" th:text="'--  服务编号： '+${service.serviceId}"></td>
+    <input type="hidden" name="serviceID" th:value="${service.serviceId}">
     </tr>
     <tr th:each="service:${service_detail}" >
       <td th:text="'--  服务名称： '+${service.serviceName}" th:width="300px" th:height="60px"></td>

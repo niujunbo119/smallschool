@@ -21,7 +21,7 @@ public class ServiceOrderEntity {
     private String serviceContent;
 
     @Column(name = "order_service_fee")
-    private String orderServiceFee;
+    private float orderServiceFee;
 
 
     @Column(name = "order_platform_fee")
@@ -31,6 +31,8 @@ public class ServiceOrderEntity {
     @Column(name = "order_service_score")
     private String orderServiceScore;
 
+    @Column(name = "order_service_category")
+    private int orderServiceCategory;
 
     @Column(name = "order_service_status")
     private String orderServiceStatus;
@@ -46,7 +48,7 @@ public class ServiceOrderEntity {
     }
 
 
-    public ServiceOrderEntity(String orderServiceId, Long serviceId, String serviceContent, String orderServiceFee, String orderPlatformFee, String orderServiceScore, String orderServiceStatus, Date orderServiceStime, Date orderServiceEtime) {
+    public ServiceOrderEntity(String orderServiceId, Long serviceId, String serviceContent, float orderServiceFee, String orderPlatformFee, String orderServiceScore, String orderServiceStatus, Date orderServiceStime, Date orderServiceEtime) {
         this.orderServiceId = orderServiceId;
         this.serviceId = serviceId;
         this.serviceContent = serviceContent;
@@ -70,6 +72,14 @@ public class ServiceOrderEntity {
         return serviceId;
     }
 
+    public int getOrderServiceCategory() {
+        return orderServiceCategory;
+    }
+
+    public void setOrderServiceCategory(int orderServiceCategory) {
+        this.orderServiceCategory = orderServiceCategory;
+    }
+
     public String getServiceContent() {
         return serviceContent;
     }
@@ -82,11 +92,11 @@ public class ServiceOrderEntity {
         this.serviceId = serviceId;
     }
 
-    public String getOrderServiceFee() {
+    public float getOrderServiceFee() {
         return orderServiceFee;
     }
 
-    public void setOrderServiceFee(String orderServiceFee) {
+    public void setOrderServiceFee(float orderServiceFee) {
         this.orderServiceFee = orderServiceFee;
     }
 

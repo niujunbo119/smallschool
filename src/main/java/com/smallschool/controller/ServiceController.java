@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -93,15 +95,34 @@ public class ServiceController {
         return "service_order";
     }
 
-/*
+
     @RequestMapping("/saveServerOrder")
-    public String saveserviceOrder(@RequestParam("/serviceID")String serviceID){
+    public String saveserviceOrder(@RequestParam("serviceID")String serviceID,Map map){
         Long serviceid =Long.parseLong(serviceID);
         ServiceEntity serviceEntity =serviceRepository.findById(serviceid).orElse(null);
+        ServiceOrderEntity serviceOrderEntity =new ServiceOrderEntity();
 
+        Date date =new Date();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderserviceId =sdf.format(date);
+        serviceOrderEntity.setOrderServiceId(orderserviceId);
+        serviceOrderEntity.setServiceId(serviceEntity.getServiceId());
+        serviceOrderEntity.setServiceContent(serviceEntity.getServiceContent());
+        serviceOrderEntity.setOrderServiceFee(serviceEntity.getServiceFee());
+        serviceOrderEntity.setOrderServiceCategory(serviceEntity.getServiceCategory());
+        serviceOrderEntity.setOrderServiceStatus("1");
+        serviceOrderEntity.setOrderServiceStime(date);
+        serviceOrderEntity.setOrderServiceEtime(null);
+        serviceOrderRepository.save(serviceOrderEntity);
 
+        List<ServiceOrderEntity> list =new ArrayList<>();
+        list.add(serviceOrderEntity);
+
+        map.put("service_detail",list);
+        System.out.println(serviceEntity.toString());
+
+        return "service_list";
     }
-*/
 
 
 }
