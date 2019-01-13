@@ -22,7 +22,7 @@ public class UserEntity {
     private String college;
     @Column(name = "major",nullable = false)
     private String major;
-    @Column(name = "location",nullable = false)
+    @Column(name = "location")
     private String address;
 
 

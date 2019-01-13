@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,15 @@ public class ServiceController {
         return "service_order";
     }
 
+/*
+    @RequestMapping("/saveServerOrder")
+    public String saveserviceOrder(@RequestParam("/serviceID")String serviceID){
+        Long serviceid =Long.parseLong(serviceID);
+        ServiceEntity serviceEntity =serviceRepository.findById(serviceid).orElse(null);
+
+
+    }
+*/
 
 
 }

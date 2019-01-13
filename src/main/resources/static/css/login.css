@@ -54,12 +54,12 @@
 
 .main .mobile {
 	width: 10rem;
-	height: 6rem;
+	height: 20rem;
 }
 
 .main .mobile .center {
 	width: 8rem;
-	height: 6rem;
+	height: 30rem;
 	margin-left: 1rem;
 	overflow: hidden;
 }
@@ -97,10 +97,17 @@ input:-ms-input-placeholder {
 	border-bottom: 1px solid #dee0e2;
 	width: 8rem;
 	height: 1rem;
+	font-size: large;
 }
 
 .main .mobile .center .icon {
 	background-image: url('../images/default_icon_tel@3x.png');
+}
+.main .mobile .center .gender {
+	background-image: url('../images/gender.png');
+}
+.main .mobile .center .user {
+	background-image: url('../images/user.png');
 }
 
 .main .mobile .center .password {

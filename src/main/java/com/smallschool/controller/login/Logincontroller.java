@@ -16,8 +16,7 @@ import java.util.Map;
 @Controller
 //@RequestMapping("/login")
 public class Logincontroller {
-//    @Autowired
-//    private StudentRepository stuRepository;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -49,6 +48,40 @@ public class Logincontroller {
     public String logout(HttpSession session) {
         // 移除session
         session.removeAttribute("user");
+        return "redirect:/snack/index";
+    }
+
+    /*
+    * 跳转注册
+    * */
+    @RequestMapping("/register")
+    public String register(){
+
+        return "register";
+    }
+
+    /*
+    * 保存用户
+    * */
+    @RequestMapping("/saveUser")
+    public String saveUser(@RequestParam("name") String name,
+                           @RequestParam("phone") String phone,
+                           @RequestParam("password") String password,
+                           @RequestParam("gender") String gender,
+                           @RequestParam("college") String college,
+                           @RequestParam("major") String major,
+                           HttpSession session){
+
+        UserEntity userEntity =new UserEntity();
+        userEntity.setName(name);
+        userEntity.setPhone(phone);
+        userEntity.setPassword(password);
+        userEntity.setGender(gender);
+        userEntity.setCollege(college);
+        userEntity.setMajor(major);
+
+        userRepository.save(userEntity);
+        session.setAttribute("user",userEntity);
         return "redirect:/snack/index";
     }
 

@@ -31,10 +31,10 @@
   </div>
 </header>
 <form th:action="@{#}" th:align="center" >
-  <table border="0"  style="font-size: large;font-weight: bold;color: black;text-align: left">
-    <!--<tr style="font-weight: bold;color: black">-->
-      <!--<td th:width="90px" th:height="30px">服务类型</td>-->
-    <!--</tr>-->
+  <table border="1"  style="font-size: large;color: black;text-align: left">
+    <tr style="font-weight: bold;color: black" th:each="service:${service_detail}">
+      <td th:name="serviceId" th:width="90px" th:height="30px" th:text="'--  服务编号： '+${service.serviceId}"></td>
+    </tr>
     <tr th:each="service:${service_detail}" >
       <td th:text="'--  服务名称： '+${service.serviceName}" th:width="300px" th:height="60px"></td>
     </tr>
