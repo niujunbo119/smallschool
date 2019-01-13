@@ -121,7 +121,7 @@ public class ServiceController {
         map.put("service_detail",list);
         System.out.println(serviceEntity.toString());
 
-        return "service_list";
+        return "redirect:/service/service";
     }
 
 
