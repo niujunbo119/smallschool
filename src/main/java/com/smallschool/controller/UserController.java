@@ -116,4 +116,10 @@ public class UserController {
 
         return "redirect:/user/addressMng";
     }
+
+    @RequestMapping("/coupon")
+    public String coupon(Map map){
+
+        return "ticket";
+    }
 }

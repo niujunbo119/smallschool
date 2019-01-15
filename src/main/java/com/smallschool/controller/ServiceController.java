@@ -1,7 +1,9 @@
 package com.smallschool.controller;
 
+import com.smallschool.entity.ServiceCategoryEntity;
 import com.smallschool.entity.ServiceEntity;
 import com.smallschool.entity.ServiceOrderEntity;
+import com.smallschool.service.ServiceCategoryRepository;
 import com.smallschool.service.ServiceOrderRepository;
 import com.smallschool.service.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class ServiceController {
 
     @Autowired
     private ServiceOrderRepository serviceOrderRepository;//注入服务订单仓库
+
+    @Autowired
+    private ServiceCategoryRepository serviceCategoryRepository;
 
     /*
     * 转入index主页
@@ -120,6 +125,39 @@ public class ServiceController {
 
         map.put("service_detail",list);
         System.out.println(serviceEntity.toString());
+
+        return "redirect:/service/service";
+    }
+    @RequestMapping("/toaddservice")
+    public String toaddService(Map map){
+
+        List list = serviceCategoryRepository.findAll();
+
+        map.put("categorys",list);
+        return "addService";
+    }
+
+    @RequestMapping("/addservice")
+    public String addservice(@RequestParam("category") String category,
+                             @RequestParam("content") String content,
+                             @RequestParam("fee") String fee){
+        ServiceEntity serviceEntity =new ServiceEntity();
+        Date date =new Date();
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyyMMddHHmmss");
+        Long serviceId =Long.parseLong(sdf.format(date));
+
+        int id =serviceCategoryRepository.findByServiceCategory(category).getServiceCategoryId();
+
+        serviceEntity.setServiceId(serviceId);
+        serviceEntity.setServiceName(category);
+        serviceEntity.setServiceCategory(id);
+        serviceEntity.setServiceContent(content);
+        serviceEntity.setServiceFee(Float.parseFloat(fee));
+        serviceEntity.setServiceStatus(1);
+        serviceEntity.setServiceStime(date);
+        serviceEntity.setServiceEtime(null);
+
+        serviceRepository.save(serviceEntity);
 
         return "redirect:/service/service";
     }

@@ -36,6 +36,7 @@ public class SnackOrderController {
     @Autowired
     SnackOrderRepository snackOrderRepository;
 
+
     @RequestMapping("/toShopCart")
     public String shopcart(Map map, HttpServletRequest request){
 
@@ -96,6 +97,22 @@ public class SnackOrderController {
         model.addAttribute("address",receiveAddress);
         model.addAttribute("totalPrice",totalPrice);
 
+        request.getSession().setAttribute("receiveUser",receiveUser);
+        request.getSession().setAttribute("receivePhone",receivePhone);
+        request.getSession().setAttribute("receiveAddress",receiveAddress);
+        request.getSession().setAttribute("totalPrice",totalPrice);
+
+//        System.out.println(totalPrice);
+        return "payment";
+    }
+    @RequestMapping("/payments")
+    public String payment(Model model,HttpServletRequest request){
+
+        model.addAttribute("user",request.getSession().getAttribute("receiveUser"));
+        model.addAttribute("phone",request.getSession().getAttribute("receivePhone"));
+        model.addAttribute("address",request.getSession().getAttribute("receiveAddress"));
+        model.addAttribute("totalPrice",request.getSession().getAttribute("totalPrice"));
+
 //        System.out.println(totalPrice);
         return "payment";
     }
@@ -125,6 +142,8 @@ public class SnackOrderController {
         snackOrderEntity.setNote(note);
 
         snackOrderRepository.save(snackOrderEntity);
+
+        cartRepository.deleteAll();
 
         map.put("orderSnackId",orderSnackId);
         map.put("deliverTime",deliverTime);

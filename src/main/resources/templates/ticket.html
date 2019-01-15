@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>服务</title>
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <link rel="stylesheet" href="style/weui.css"/>
-  <link rel="stylesheet" href="css/weui2.css"/>
-  <link rel="stylesheet" href="css/ticket.css"/>
+  <link rel="stylesheet" th:href="@{/style/weui.css}"/>
+  <link rel="stylesheet" th:href="@{/css/weui2.css}"/>
+  <link rel="stylesheet" th:href="@{/css/ticket.css}"/>
 </head>
 <body ontouchstart>
 <header class="header">
   <div class="weui-header ">
     <div class="weui-header-left">
-      <a href="payment.html" class="icon icon-95 f-orange"></a>
+      <a th:href="@{/snackOrder/payments}" class="icon icon-95 f-orange"></a>
     </div>
     <h1 class="weui-header-title f-orange">选择优惠券</h1>
     <div class="weui-header-right">
-      <a href="payment.html" class="edit f-orange">确认</a>
+      <a th:href="@{/snackOrder/payments}" class="edit f-orange">确认</a>
     </div>
   </div>
 </header>
@@ -83,6 +83,6 @@
   </ul>
 </article>
 </body>
-<script src="js/lib/zepto.min.js"></script>
-<script src="js/example.js"></script>
+<script th:src="@{/js/lib/zepto.min.js}"></script>
+<script th:src="@{/js/example.js}"></script>
 </html>

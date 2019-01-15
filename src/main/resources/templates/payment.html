@@ -45,7 +45,7 @@
               <label>送货时间</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-              <input class="weui_input" type="text" name="deliverTime" readonly value="请选择送货时间"/>
+              <input class="weui_input" type="text" name="deliverTime" readonly value="今日配送 10:30 - 22:00"/>
             </div>
           </a>
         </div>
@@ -104,12 +104,12 @@
     <section class="assets">
       <div class="weui_cells weui_cells_form">
         <div class="weui_panel weui_panel_access">
-          <a class="weui_panel_ft" href="ticket.html">
+          <a class="weui_panel_ft" th:href="@{/user/coupon}">
             <div class="menu">
               <span class="title">优惠券</span>
               <span class="note">1张可用</span>
             </div>
-            <div class="msg">未使用</div>
+            <div class="msg">满100减80</div>
           </a>
         </div>
         <div class="weui_cell weui_cell_switch">
@@ -202,11 +202,11 @@
     title: "送货时间",
     items: [
       {
-        title: "今日配送 10:30 - 18:00",
+        title: "今日配送 10:30 - 22:00",
         value: "001",
       },
       {
-        title: "明日配送 10:30 - 18:00",
+        title: "明日配送 10:30 - 22:00",
         value: "002",
       }
     ],

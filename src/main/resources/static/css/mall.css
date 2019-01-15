@@ -23,6 +23,12 @@ body, h1, h2, h3, h4, h5, h6, p, div, ul, li, a, button, section, figure, figcap
   border-bottom: solid 1px #cccccc;
   background: #FFFFFF;
 }
+.addservice{
+  color: #FF5E23;
+  font-size: 50px;
+  float: right;
+  margin-right: 10px;
+}
 .main {
   /*min-height:600px;*/
   /*background: #ffffff;*/
